@@ -1,0 +1,93 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+      "Portal2": {
+        "root": "",
+        "sourceRoot": "Ng-app",
+        "projectType": "application",
+        "architect": {
+          "build": {
+            "builder": "@angular-devkit/build-angular:browser",
+            "options": {
+              "outputPath": "clientPack",
+              "index": "Ng-app/index.html",
+              "main": "clientApp/main.ts",
+              "tsConfig": "Ng-app/tsconfig.app.json",
+              "polyfills": "clientApp/polyfills.ts",
+              "assets": [
+              ],
+              "styles": [
+              ],
+              "scripts": [
+              ]
+            },
+            "configurations": {
+              "production": {
+                "optimization": true,
+                "outputHashing": "all",
+                "sourceMap": false,
+                "extractCss": true,
+                "namedChunks": false,
+                "aot": true,
+                "extractLicenses": true,
+                "vendorChunk": false,
+                "buildOptimizer": true,
+                "fileReplacements": [
+                  {
+                    "replace": "clientApp/environments/environment.ts",
+                    "with": "clientApp/environments/environment.prod.ts"
+                  }
+                ]
+              }
+            }
+          },
+          "serve": {
+            "builder": "@angular-devkit/build-angular:dev-server",
+            "options": {
+              "browserTarget": "Portal2:build"
+            },
+            "configurations": {
+              "production": {
+                "browserTarget": "Portal2:build:production"
+              }
+            }
+          },
+          "extract-i18n": {
+            "builder": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+              "browserTarget": "Portal2:build"
+            }
+          },
+          "lint": {
+            "builder": "@angular-devkit/build-angular:tslint",
+            "options": {
+              "tsConfig": [
+                "Ng-app/tsconfig.app.json",
+                "Ng-app/tsconfig.spec.json"
+              ],
+              "exclude": [
+                "**/node_modules/**"
+              ]
+            }
+          }
+        }
+      },
+      "Portal2-e2e": {
+        "root": "e2e",
+        "sourceRoot": "e2e",
+        "projectType": "application"
+      }
+    },
+    "defaultProject": "Portal2",
+    "schematics": {
+      "@schematics/angular:component": {
+        "prefix": "src",
+        "styleext": "css"
+      },
+      "@schematics/angular:directive": {
+        "prefix": "src"
+      }
+    }
+  }
